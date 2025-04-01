@@ -4,6 +4,8 @@ const cors = require('cors');
 
 const connectDB = require('./config/db');
 
+const authRoutes = require('./routes/authRouter');
+
 
 
 const PORT = process.env.PORT || 5050;
@@ -17,6 +19,8 @@ app.use(cors());
 
 connectDB(MONGO_URI );
 
+
+app.use('/api/auth', authRoutes)
 app.get('/', (req, res) => {
     res.send('ok')
 })
@@ -24,3 +28,4 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started! http://localhost:${PORT}`)
 })
+
